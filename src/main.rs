@@ -1,7 +1,6 @@
-#[allow(clippy::needless_return)]
-
-mod wordpuzzle;
 mod utils;
+#[allow(clippy::needless_return)]
+mod wordpuzzle;
 
 use wordpuzzle::WordPuzzle;
 

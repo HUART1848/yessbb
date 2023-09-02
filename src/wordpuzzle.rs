@@ -5,7 +5,7 @@ use crate::utils::{self, flushed_print};
 static RAW_LIST: &str = include_str!("../words.txt");
 
 const DEFAULT_MAX_WORD_SIZE: usize = 5;
-const DEFAULT_DURATION:u64 = 5;
+const DEFAULT_DURATION: u64 = 5;
 
 pub struct WordPuzzle {
     max_word_size: usize,
@@ -54,16 +54,21 @@ impl WordPuzzle {
         let target = self.get_word();
         let scrambled = Self::shuffle_word(target.as_ref());
 
-        println!("What is this word ? You have {} seconds:", self.duration.as_secs());
+        println!(
+            "What is this word ? You have {} seconds:",
+            self.duration.as_secs()
+        );
         flushed_print(scrambled.as_str());
         std::thread::sleep(self.duration);
-        
-        utils::flushed_print("\rYou answer: ");
-        let mut attempt = String::new();
-        std::io::stdin().read_line(&mut attempt).expect("could not read the answer");
 
-        if target.eq(&attempt) {
-            println!("Well done!");
+        utils::flushed_print("\rType your answer: ");
+        let mut attempt = String::new();
+        std::io::stdin()
+            .read_line(&mut attempt)
+            .expect("could not read the answer");
+
+        if target.eq(&attempt.trim()) {
+            println!("Correct!");
             return true;
         }
 
