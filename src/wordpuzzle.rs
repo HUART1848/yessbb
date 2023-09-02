@@ -77,4 +77,3 @@ impl Default for WordPuzzle {
         return Self::new(DEFAULT_MAX_WORD_SIZE, DEFAULT_DURATION);
     }
 }
-git 
